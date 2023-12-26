@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Dropdown({ options }) {
+function Dropdown({ options, selection, onSelect }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -13,7 +13,7 @@ function Dropdown({ options }) {
   const handleOptionClick = (option) => {
     // option.stopPropagation();
     setIsOpen(false);
-    console.log(option);
+    onSelect(option);
   };
 
   const renderedOptions = options.map((option) => {
@@ -26,7 +26,7 @@ function Dropdown({ options }) {
 
   return (
     <div>
-      <div onClick={handleClick}>Select...</div>
+      <div onClick={handleClick}>{selection?.label || "Select..."}</div>
       {isOpen && <div>{renderedOptions}</div>}
     </div>
   );
