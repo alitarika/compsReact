@@ -1,4 +1,6 @@
 function Table({ data, config, keyFn }) {
+  // implement sorting !!! TODO
+
   const renderedHeaders = config.map((column) => {
     return <th key={column.label}>{column.label}</th>;
   });
