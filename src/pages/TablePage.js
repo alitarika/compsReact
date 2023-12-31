@@ -1,3 +1,4 @@
+import SortableTable from "../components/SortableTable";
 import Table from "../components/Table";
 
 function TablePage() {
@@ -6,12 +7,14 @@ function TablePage() {
     { name: "Apple", color: "bg-red-500", score: 3 },
     { name: "Banana", color: "bg-yellow-500", score: 1 },
     { name: "Lime", color: "bg-green-500", score: 4 },
+    { name: "Cherry", color: "bg-red-800", score: 3.5 },
   ];
 
   const config = [
     {
       label: "Name",
       render: (fruit) => fruit.name,
+      sortValue: (fruit) => fruit.name,
     },
     {
       label: "Color",
@@ -20,6 +23,12 @@ function TablePage() {
     {
       label: "Score",
       render: (fruit) => fruit.score,
+      sortValue: (fruit) => fruit.score,
+    },
+    {
+      label: "Score Squared",
+      render: (fruit) => fruit.score ** 2,
+      sortValue: (fruit) => fruit.score ** 2,
     },
   ];
 
@@ -28,7 +37,8 @@ function TablePage() {
   };
 
   return (
-    <div>
+    <div className="flex">
+      <SortableTable data={data} config={config} keyFn={keyFn} />
       <Table data={data} config={config} keyFn={keyFn} />
     </div>
   );
